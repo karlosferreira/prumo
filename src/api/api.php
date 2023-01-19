@@ -1,6 +1,6 @@
-<?php
-    include('db.php');
-    header("Content-Type:application/json; charset=latin1");
+<?php // http://localhost/prumo/api/{$id} 
+    include('../../db.php');
+    header("Content-Type:application/json; charset=utf-8");
 
     if (isset($_GET['enterprise_id']) && $_GET['enterprise_id']!="") {
         $enterprise_id = $_GET['enterprise_id'];

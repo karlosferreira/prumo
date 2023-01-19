@@ -9,17 +9,18 @@ require 'vendor/phpmailer/PHPMailer/src/SMTP.php';
 require_once "vendor/autoload.php";
 
 function sendMail($data) {    
-    $phpmailer = new PHPMailer(true);
+    $mail = new PHPMailer(true);
     
-    $phpmailer->isSMTP();
-    $phpmailer->Host = 'smtp.mailtrap.io';
-    $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = 2525;
-    $phpmailer->Username = 'fceb6735f872af';
-    $phpmailer->Password = '7718386ca97739';
+    $mail->isSMTP();
+    $mail->CharSet = 'UTF-8';
+    $mail->Host = 'smtp.mailtrap.io';
+    $mail->SMTPAuth = true;
+    $mail->Port = 2525;
+    $mail->Username = 'fceb6735f872af';
+    $mail->Password = '7718386ca97739';
 
-    $mail->From = 'kyrvim@gmail.com';
-    $mail->FromName = 'Carlos Ferreira';
+    $mail->From = $data['from_mail'];
+    $mail->FromName = $data['from_name'];
     
     $mail->addAddress($data['to_mail'], $data['to_name']);
     $mail->addReplyTo($data['cc_mail'], $data['cc_name']);
@@ -31,14 +32,18 @@ function sendMail($data) {
     $body .= "<P><b>Capital Social: </b>" . $data['body']['social_capital'] . "</p>";
     $body .= "<P><b>Porte: </b>" . $data['body']['porte'] . "</p>";
     $body .= "<P><b>Endereço: </b>" . $data['body']['address'] . "</p>";
-    
+
     $mail->Subject = "Novo registro no sistema";
     $mail->Body = $body;
-    
+
     try {
         $mail->send();
-        echo "Menssagem enviada com sucesso.";
+        echo "<script>
+            console.log('Nova consulta registrada');
+        </script>";        
     } catch (Exception $e) {
-        echo "Erro de envio: " . $mail->ErrorInfo;
+        echo "<script>
+            console.log(". $mail->ErrorInfo .");
+        </script>";
     }
 }

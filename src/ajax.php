@@ -1,6 +1,8 @@
 <?php
-include('db.php');
-require('smtp.php');
+include('../db.php');
+require('../smtp.php');
+
+require_once('content.php');
 
 if (empty($_POST['cnpj'])) {
     echo "<p class='warning'>Insira um cnpj válido.</p>";
@@ -89,22 +91,14 @@ if (isset($_POST['cnpj']) && !empty($_POST['cnpj'])) {
                 $porte,
                 $address
             );
+            
             mysqli_query($db,$query_post);
 
             sendMail($mail_info);
-
-            echo "<h5>Dados da Empresa:</h5>";
-            echo "<P><b>Razão Social: </b>" . $social_reason . "</p>";
-            echo "<P><b>Capital Social: </b>" . $social_capital . "</p>";
-            echo "<P><b>Porte: </b>" . $porte . "</p>";
-            echo "<P><b>Endereço: </b>" . $address . "</p>";
+            the_content('api', $mail_info['body']);
         } else {
             while ($enterprise = mysqli_fetch_array($query_fetch)) {
-                echo "<h5>Dados da Empresa:</h5>";
-                echo "<P><b>Razão Social: </b>" . $enterprise['social_reason'] . "</p>";
-                echo "<P><b>Capital Social: </b>" . $enterprise['social_capital'] . "</p>";
-                echo "<P><b>Porte: </b>" . $enterprise['port_description'] . "</p>";
-                echo "<P><b>Endereço: </b>" . $enterprise['address'] . "</p>";
+                the_content('', $enterprise);
             }
         }
     }

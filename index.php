@@ -1,51 +1,26 @@
 <?php
   include('db.php');
+  include_once('src/form.php');
 ?>
 
 <html>
   <head>
     <title>Prumo Tecnologia</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8-mb4">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="assets/js/jquery.mask.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8-mb4">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/assets/css/style.css">
   </head>
- 
-  <style>
-    #result {
-      padding: 0!important;
-      margin: 0!important;
-    }
-    #result p {
-      margin: 0;
-      padding: 7px 14px;
-    }
-    .warning {
-      background: yellow;
-      color: #000;
-    }
-    .error {
-      background: red;
-      color: #fff;
-    }
-    .info {
-      background: blue;
-      color: #fff;
-    }
-  </style>
 
   <body>
     <div class="row m-5">
       <div class="col-md-6">
-        <form action="" method="POST">
-          <h4>Consulte seu CNPJ</h4>
-          <p>by <a href="https://www.cluemediator.com" target="_blank">https://www.cnpj.ws/</a></p>
-          <input type="text" id="cnpj" class="p-1" name="cnpj" placeholder="Infomre seu CNPJ" />
-          <button type="submit" class="btn btn-primary mb-1" id="datasubmit">Consultar</button>
-        </form>
-        <div id="result" class="m-0" style="width: 100%; padding: 7"></div>
+        <?php the_form(); ?>
+        <div id="result" class="m-0 result-box"></div>
       </div>
     </div>
+
+    <script src="src/assets/js/jquery.min.js"></script>
+    <script src="src/assets/js/jquery.mask.min.js"></script> 
 
     <script>
       $(document).ready(function () {
@@ -60,7 +35,7 @@
           var cnpj = $("#cnpj").val();
           
           $.ajax({
-            url: "ajax.php",
+            url: "src/ajax.php",
             type: "POST",
             data: { cnpj: cnpj },
             success: function (data) {
@@ -71,5 +46,6 @@
         });
       });
     </script>
+    
   </body>
 </html>

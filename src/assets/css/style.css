@@ -1,0 +1,24 @@
+#result {
+    padding: 0!important;
+    margin: 0!important;
+}
+#result p {
+    margin: 0;
+    padding: 7px 14px;
+}
+.warning {
+    background: yellow;
+    color: #000;
+}
+.error {
+    background: red;
+    color: #fff;
+}
+.info {
+    background: blue;
+    color: #fff;
+}
+.result {
+    width: 100%; 
+    padding: 7;
+}

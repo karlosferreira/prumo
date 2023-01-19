@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^api/([0-9a-zA-Z_-]*)$ api.php?enterprise_id=$1 [NC,L]
+RewriteRule ^api/([0-9a-zA-Z_-]*)$ src/api/api.php?enterprise_id=$1 [NC,L]
