@@ -1,12 +1,24 @@
 <?php
 include('db.php');
- 
-if (isset($_POST['cnpj']) && $_POST['cnpj']!="") {
+
+if (empty($_POST['cnpj'])) {
+    echo "<p class='warning'>Insira um cnpj válido.</p>";
+    exit;
+}
+
+if (isset($_POST['cnpj']) && !empty($_POST['cnpj'])) {
     $get_post = $_POST['cnpj'];
 
     $dont_dot = str_replace('.', '', $get_post);
     $dont_hifen = str_replace('-', '', $dont_dot);
     $cnpj = str_replace('/', '', $dont_hifen);
+
+    $length = strlen($cnpj);
+    
+    if (strlen($cnpj) != 14) {
+        echo "<p class='error'>Cnpj inválido. Por favor revise o número do registro.</p>";
+        exit;
+    }
 
     $url = "https://publica.cnpj.ws/cnpj/".$cnpj;
     $fetch = curl_init($url);
@@ -31,7 +43,7 @@ if (isset($_POST['cnpj']) && $_POST['cnpj']!="") {
     $porte = $result->porte->descricao;
 
     if(!$result) {
-        echo "Nada encontrado. Tente novamente";
+        echo "<p class='info'>Nada encontrado. Tente novamente</p>";
         exit;
     } else {
         $query = sprintf("INSERT INTO `enterprises` (
@@ -51,11 +63,11 @@ if (isset($_POST['cnpj']) && $_POST['cnpj']!="") {
             $address
         );
 
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         mysqli_query($db,$query);
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     }
 
-    echo "<h4>Dados da Empresa:</h4>";
+    echo "<h5>Dados da Empresa:</h5>";
     echo "<P><b>Razão Social: </b>" . $social_reason . "</p>";
     echo "<P><b>Capital Social: </b>" . $social_capital . "</p>";
     echo "<P><b>Porte: </b>" . $porte. "</p>";
