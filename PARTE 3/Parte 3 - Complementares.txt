@@ -1,0 +1,3 @@
+Referências para configurar uma VPS linux (Ubuntu 20.04) - Por Digital Ocean:
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04
+https://www.digitalocean.com/community/tutorials/how-to-create-temporary-and-permanent-redirects-with-nginx

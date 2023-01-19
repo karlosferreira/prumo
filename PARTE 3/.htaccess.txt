@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^google.com [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.google.com [NC]
+RewriteRule ^(.*)$ https://facebook.com/$1 [L,R=301,NC]

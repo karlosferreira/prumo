@@ -1,0 +1,2 @@
+RewriteEngine On  
+RewriteRule ^api/([0-9a-zA-Z_-]*)$ api.php?cnpj=$1 [NC,L]
