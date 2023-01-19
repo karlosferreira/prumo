@@ -1,6 +1,6 @@
 <?php
-    header("Content-Type:application/json");
     include('db.php');
+    header("Content-Type:application/json; charset=latin1");
 
     if (isset($_GET['enterprise_id']) && $_GET['enterprise_id']!="") {
         $enterprise_id = $_GET['enterprise_id'];
@@ -22,5 +22,6 @@
         $response["message"] = "No data found!";
     }
 
-    echo json_encode($response); 
+    echo json_encode($response);
+    
     exit;

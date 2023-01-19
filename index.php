@@ -5,6 +5,7 @@
 <html>
   <head>
     <title>Prumo Tecnologia</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8-mb4">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/js/jquery.mask.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">

@@ -1,6 +1,6 @@
 <?php
 include('db.php');
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+require('smtp.php');
 
 if (empty($_POST['cnpj'])) {
     echo "<p class='warning'>Insira um cnpj válido.</p>";
@@ -52,6 +52,22 @@ if (isset($_POST['cnpj']) && !empty($_POST['cnpj'])) {
 
     $porte = $result->porte->descricao;
 
+    $mail_info = [
+        'from_mail' => 'kyrvim@gmail.com',
+        'from_name' => 'Carlos Ferreira',
+        'to_mail' => 'desenvolvimento.carlosferreira@gmail.com',
+        'to_name' => 'Carlos Junior',
+        'cc_mail' => 'ljuliete0@gmail.com',
+        'cc_name' => 'Juliete Laurindo',
+        'subject' => 'Subject',
+        'body' => [
+            'social_reason' => $social_reason,
+            'social_capital' => $social_capital,
+            'porte' => $porte,
+            'address' => $address
+        ]
+    ];
+
     if( $result && !isset($result->status) ) {
         $query_get = sprintf("SELECT * FROM `enterprises` WHERE `social_reason` = '%s'", $social_reason);
         $query_fetch = mysqli_query($db, $query_get);
@@ -74,6 +90,8 @@ if (isset($_POST['cnpj']) && !empty($_POST['cnpj'])) {
                 $address
             );
             mysqli_query($db,$query_post);
+
+            sendMail($mail_info);
 
             echo "<h5>Dados da Empresa:</h5>";
             echo "<P><b>Razão Social: </b>" . $social_reason . "</p>";
