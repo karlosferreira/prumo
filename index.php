@@ -19,7 +19,7 @@
           <h5>Consulte seu CNPJ</h5>
           <p>by <a href="https://www.cluemediator.com" target="_blank">https://www.cnpj.ws/</a></p>
           <input type="text" id="cnpj" class="p-1" name="cnpj" placeholder="Infomre seu CNPJ" />
-          <button type="submit" class="btn btn-primary mb-1" id="datasubmit">Submit</button>
+          <button type="submit" class="btn btn-primary mb-1" id="datasubmit">Consultar</button>
         </form>
         <div id="result" class="m-0" style="width: 100%; padding: 7">
         </div>
@@ -31,12 +31,18 @@
     $(document).ready(function () {
       $("#datasubmit").on("click", function (e) {
         e.preventDefault();
+        
+        $("#result").html('');
+        $(this).html('Aguarde...');
+
         var cnpj = $("#cnpj").val();
+        
         $.ajax({
           url: "ajax.php",
           type: "POST",
           data: { cnpj: cnpj },
           success: function (data) {
+            $("#datasubmit").html('Consultar');
             $("#result").html(data);
           }
         });

@@ -30,7 +30,6 @@ if (isset($_POST['cnpj']) && $_POST['cnpj']!="") {
 
     $porte = $result->porte->descricao;
 
-
     if(!$result) {
         echo "Nada encontrado. Tente novamente";
         exit;
@@ -41,16 +40,18 @@ if (isset($_POST['cnpj']) && $_POST['cnpj']!="") {
             `port_description`, 
             `address`
         ) VALUES (
-            `%s1`,
-            `%s2`,
-            `%s3`,
-            `%s4`
+            '%s1',
+            '%s2',
+            '%s3',
+            '%s4'
         )",
-        $social_reason,
-        $social_capital,
-        $porte,
-        $address);
+            $social_reason,
+            $social_capital,
+            $porte,
+            $address
+        );
 
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         mysqli_query($db,$query);
     }
 
