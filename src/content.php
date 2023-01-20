@@ -6,7 +6,8 @@ function the_content($local, $enterprise = []){
         case 'api':
             echo "<h5>Dados da Empresa:</h5>";
             echo "<P><b>Razão Social: </b>" . $enterprise['social_reason'] . "</p>";
-            echo "<P><b>Capital Social: </b>" . $enterprise['social_capital'] . "</p>";
+            echo "<P><b>Registro Nº: </b>" . $enterprise['cnpj'] . "</p>";
+            echo "<P><b>Capital Social: </b>R$ " . $enterprise['social_capital'] . "</p>";
             echo "<P><b>Porte: </b>" . $enterprise['porte'] . "</p>";
             echo "<P><b>Endereço: </b>" . $enterprise['address'] . "</p>";
 
@@ -14,7 +15,8 @@ function the_content($local, $enterprise = []){
         default:
             echo "<h5>Dados da Empresa:</h5>";
             echo "<P><b>Razão Social: </b>" . $enterprise['social_reason'] . "</p>";
-            echo "<P><b>Capital Social: </b>" . $enterprise['social_capital'] . "</p>";
+            echo "<P><b>Registro Nº: </b>" . $enterprise['cnpj'] . "</p>";
+            echo "<P><b>Capital Social: </b>R$ " . $enterprise['social_capital'] . "</p>";
             echo "<P><b>Porte: </b>" . $enterprise['port_description'] . "</p>";
             echo "<P><b>Endereço: </b>" . $enterprise['address'] . "</p>";
 

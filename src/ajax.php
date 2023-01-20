@@ -64,6 +64,7 @@ if (isset($_POST['cnpj']) && !empty($_POST['cnpj'])) {
         'subject' => 'Subject',
         'body' => [
             'social_reason' => $social_reason,
+            'cnpj' => $cnpj,
             'social_capital' => $social_capital,
             'porte' => $porte,
             'address' => $address
@@ -76,22 +77,25 @@ if (isset($_POST['cnpj']) && !empty($_POST['cnpj'])) {
 
         if ($query_fetch->num_rows <= 0) {
             $query_post = sprintf("INSERT INTO `enterprises` (
-                `social_reason`, 
-                `social_capital`, 
+                `social_reason`,
+                `cnpj`,
+                `social_capital`,
                 `port_description`, 
                 `address`
             ) VALUES (
                 '%s',
                 '%s',
                 '%s',
+                '%s',
                 '%s'
             )",
                 $social_reason,
+                $cnpj,
                 $social_capital,
                 $porte,
                 $address
             );
-            
+
             mysqli_query($db,$query_post);
 
             sendMail($mail_info);

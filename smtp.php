@@ -27,9 +27,10 @@ function sendMail($data) {
     
     $mail->isHTML(true);
     
-    $body = "<h5>Dados da Empresa:</h5>";
+    $body = "<h2>Dados da Empresa:</h2>";
     $body .= "<P><b>Razão Social: </b>" . $data['body']['social_reason'] . "</p>";
-    $body .= "<P><b>Capital Social: </b>" . $data['body']['social_capital'] . "</p>";
+    $body .= "<P><b>Registro Nº: </b>" . $data['body']['cnpj'] . "</p>";
+    $body .= "<P><b>Capital Social: </b>R$ " . $data['body']['social_capital'] . "</p>";
     $body .= "<P><b>Porte: </b>" . $data['body']['porte'] . "</p>";
     $body .= "<P><b>Endereço: </b>" . $data['body']['address'] . "</p>";
 
