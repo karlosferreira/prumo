@@ -1,5 +1,5 @@
 <?php // http://localhost/prumo/api/cnpj/{$cnpj} 
-    include('../../db.php');
+    include_once('../../db.php');
     header("Content-Type:application/json; charset=utf-8");
 
     if (isset($_GET['cnpj']) && $_GET['cnpj']!="") {

@@ -11,6 +11,9 @@ require_once "vendor/autoload.php";
 function sendMail($data) {    
     $mail = new PHPMailer(true);
     
+    // editar com as informações do servidor smtp
+    // nesse teste, usei o https://mailtrap.io/
+    // uma ótima ferramenta para sandbox smtp
     $mail->isSMTP();
     $mail->CharSet = 'UTF-8';
     $mail->Host = 'smtp.mailtrap.io';

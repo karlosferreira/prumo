@@ -5,4 +5,4 @@
         <input type="text" id="cnpj" class="p-1" name="cnpj" placeholder="Infomre seu CNPJ" />
         <button type="submit" class="btn btn-primary mb-1" id="datasubmit">Consultar</button>
     </form>
-<?php }
+<?php } ?>

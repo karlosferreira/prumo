@@ -1,8 +1,8 @@
 <?php
-include('../db.php');
-require('../smtp.php');
+include_once('../db.php');
+include_once('../smtp.php');
 
-require_once('content.php');
+include_once('content.php');
 
 if (empty($_POST['cnpj'])) {
     echo "<p class='warning'>Insira um cnpj válido.</p>";
